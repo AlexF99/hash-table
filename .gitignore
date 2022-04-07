@@ -1,3 +1,5 @@
 myht
 
 *.o
+
+.env
