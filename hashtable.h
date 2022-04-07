@@ -8,3 +8,9 @@ typedef struct arrayitem_t {
     node_t *head;
     node_t *tail;
 } arrayitem_t;
+
+int h1(int k);
+
+int h2(int k);
+
+void insert(int key, int value);
