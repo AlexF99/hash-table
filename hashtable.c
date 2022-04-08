@@ -12,6 +12,17 @@ int h2(int k)
     return floor(m * ((k * 0.9) - floor(k * 0.9)));
 }
 
-void insert(int key, int value) {
+void insert(int key)
+{
     return;
+}
+
+void remove(int key)
+{
+    return;
+}
+
+int lookup(int key)
+{
+    return 1;
 }
