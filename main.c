@@ -3,12 +3,15 @@
 #include "hashtable.h"
 
 #define LENGTH 1024
+#define m 11
 
 int main()
 {
     char op[1];
     char line[LENGTH];
     int chave;
+
+    node_t *hash_table[m];
 
     scanf("%s", op);
     if (op[0] == 'q')
@@ -25,7 +28,7 @@ int main()
             exit(0);
         case 'i':
             scanf("%d", &chave);
-            insert(chave);
+            insert_node(chave);
             break;
         case 'r':
             scanf("%d", &chave);

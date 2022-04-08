@@ -12,12 +12,12 @@ int h2(int k)
     return floor(m * ((k * 0.9) - floor(k * 0.9)));
 }
 
-void insert(int key)
+void insert_node(int key)
 {
     return;
 }
 
-void remove(int key)
+void remove_node(int key)
 {
     return;
 }

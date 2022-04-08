@@ -7,8 +7,8 @@ int h1(int k);
 
 int h2(int k);
 
-void insert(int key);
+void insert_node(int key);
 
-void remove(int key);
+void remove_node(int key);
 
 int lookup(int key);
