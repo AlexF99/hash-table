@@ -9,17 +9,20 @@ int main()
 {
     char op[1];
     char line[LENGTH];
-    int chave;
+    int key;
 
     node_t *hash_table[m];
+    node_t *hash_table_2[m];
 
-    scanf("%s", op);
-    if (op[0] == 'q')
-        exit(0);
+    init_ht(hash_table);
+    init_ht(hash_table_2);
 
-    scanf("%d", &chave);
+    printf("table1:\n");
+    print_ht(hash_table);
+    printf("table2:\n");
+    print_ht(hash_table_2);
 
-    while (fgets(line, 1024, stdin) != NULL)
+    do
     {
         scanf("%s", op);
         switch (op[0])
@@ -27,16 +30,23 @@ int main()
         case 'q':
             exit(0);
         case 'i':
-            scanf("%d", &chave);
-            insert_node(chave);
+            scanf("%d", &key);
+            insert_node(hash_table, hash_table_2, key);
             break;
         case 'r':
-            scanf("%d", &chave);
+            scanf("%d", &key);
             // exclui nodo
             break;
         default:
             break;
         }
-    }
+    } while (fgets(line, 1024, stdin) != NULL);
+
+    printf("\nafter ops:\n");
+    printf("table1:\n");
+    print_ht(hash_table);
+    printf("table2:\n");
+    print_ht(hash_table_2);
+
     return 0;
 }
