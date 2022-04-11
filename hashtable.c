@@ -39,23 +39,24 @@ void print_ht(node_t **hash_table)
 
 void insert_node(node_t **hash_table, node_t **hash_table_2, int key)
 {
-    int j;
+    int i, j;
 
-    j = h1(key);
-    if (hash_table[j] == NULL || hash_table[j] == DELETED)
+    i = h1(key);
+    if (hash_table[i] == NULL || hash_table[i] == DELETED)
     {
-        hash_table[j] = malloc(sizeof(node_t));
-        hash_table[j]->key = key;
+        hash_table[i] = malloc(sizeof(node_t));
+        hash_table[i]->key = key;
         return;
     }
-    j = h2(key);
+    j = h2(hash_table[i]->key);
     if (hash_table_2[j] == NULL || hash_table_2[j] == DELETED)
     {
         hash_table_2[j] = malloc(sizeof(node_t));
-        hash_table_2[j]->key = key;
+        hash_table_2[j] = hash_table[i];
+        hash_table[i] = DELETED;
+        insert_node(hash_table, hash_table_2, key);
         return;
     }
-    hash_table_2[j]->key = key; // override
 }
 
 void remove_node(node_t **hash_table, node_t **hash_table_2, int key)
