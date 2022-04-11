@@ -35,7 +35,7 @@ int main()
             break;
         case 'r':
             scanf("%d", &key);
-            // exclui nodo
+            remove_node(hash_table, hash_table_2, key);
             break;
         default:
             break;
