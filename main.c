@@ -31,16 +31,18 @@ int main()
             exit(0);
         case 'i':
             scanf("%d", &key);
+            printf("insert %d\n", key);
             insert_node(hash_table, hash_table_2, key);
             break;
         case 'r':
             scanf("%d", &key);
+            printf("delete %d\n", key);
             remove_node(hash_table, hash_table_2, key);
             break;
         default:
             break;
         }
-    } while (fgets(line, 1024, stdin) != NULL);
+    } while (fgets(line, LENGTH, stdin) != NULL);
 
     printf("\nafter ops:\n");
     printf("table1:\n");

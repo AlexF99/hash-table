@@ -4,7 +4,7 @@
 #include "hashtable.h"
 
 #define m 11
-#define DELETED (node_t*)(0xFFFFFFFFFFFFFFFFUL)
+#define DELETED (node_t *)(0xFFFFFFFFFFFFFFFFUL)
 
 int h1(int k)
 {
@@ -48,17 +48,14 @@ void insert_node(node_t **hash_table, node_t **hash_table_2, int key)
         hash_table[j]->key = key;
         return;
     }
-    else
+    j = h2(key);
+    if (hash_table_2[j] == NULL || hash_table_2[j] == DELETED)
     {
-        j = h2(key);
-        if (hash_table_2[j] == NULL || hash_table_2[j] == DELETED)
-        {
-            hash_table_2[j] = malloc(sizeof(node_t));
-            hash_table_2[j]->key = key;
-            return;
-        }
+        hash_table_2[j] = malloc(sizeof(node_t));
+        hash_table_2[j]->key = key;
+        return;
     }
-    return;
+    hash_table_2[j]->key = key; // override
 }
 
 void remove_node(node_t **hash_table, node_t **hash_table_2, int key)
@@ -68,7 +65,7 @@ void remove_node(node_t **hash_table, node_t **hash_table_2, int key)
     if (hash_table[i] == NULL)
         return;
 
-    if (hash_table[i]->key == key)
+    if (hash_table[i] != DELETED && hash_table[i]->key == key)
     {
         hash_table[i] = DELETED;
         return;
