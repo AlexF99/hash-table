@@ -37,6 +37,33 @@ void print_ht(node_t **hash_table)
     }
 }
 
+result_t *get_result(node_t **hash_table, node_t **hash_table_2)
+{
+    int i;
+    int j = 0;
+    result_t *result;
+
+    result = malloc(sizeof(result_t));
+
+    result->result_array = malloc(22 * sizeof(int));
+    for (i = 0; i < m; i++)
+    {
+        if (hash_table[i] != NULL && hash_table[i] != DELETED && hash_table[i])
+        {
+            result->result_array[j] = hash_table[i]->key;
+            j++;
+        }
+        if (hash_table_2[i] != NULL && hash_table_2[i] != DELETED && hash_table_2[i])
+        {
+            result->result_array[j] = hash_table_2[i]->key;
+            j++;
+        }
+    }
+
+    result->tam = j;
+    return result;
+}
+
 void insert_node(node_t **hash_table, node_t **hash_table_2, int key)
 {
     int i, j;
