@@ -15,6 +15,7 @@ int main()
     int key;
 
     result_t *result;
+    lookup_t *lookup;
 
     node_t *hash_table[m];
     node_t *hash_table_2[m];
@@ -42,18 +43,16 @@ int main()
         }
     } while (!feof(stdin));
 
-    // printf("\nafter ops:\n");
-    // printf("table1:\n");
-    // print_ht(hash_table);
-    // printf("table2:\n");
-    // print_ht(hash_table_2);
-
     result = get_result(hash_table, hash_table_2);
 
     qsort(result->result_array, result->tam, sizeof(int), cmpfunc);
 
-    for (int i = 0; i < result->tam; i++)
-        printf("%d, %s, %d\n", result->result_array[i], "T1", 1);
+    for (int i = 0; i < result->tam; i++) {
+        lookup = node_lookup(hash_table, hash_table_2, result->result_array[i]);
+        if (lookup && lookup != NULL) {
+            printf("%d,T%c,%d\n", result->result_array[i], lookup->table, lookup->index);
+        }
+    }
 
     return 0;
 }

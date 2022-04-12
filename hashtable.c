@@ -108,20 +108,30 @@ void remove_node(node_t **hash_table, node_t **hash_table_2, int key)
     }
 }
 
-int node_lookup(node_t **hash_table, node_t **hash_table_2, int key)
+lookup_t *node_lookup(node_t **hash_table, node_t **hash_table_2, int key)
 {
+    lookup_t *lookup = malloc(sizeof(lookup_t));
     int i = h1(key);
 
-    if (hash_table[i] == NULL)
-        return -1;
+    if (hash_table[i] && hash_table[i] != NULL && hash_table[i] != DELETED)
+    {
+        if (hash_table[i]->key == key) {
+            lookup->index = i;
+            lookup->table = '1';
+            return lookup;
+        }
+    }
 
-    if (hash_table[i]->key == key)
-        return i;
+    if (hash_table[i] == DELETED || hash_table[i]) {
+        i = h2(key);
+        if (hash_table_2[i] != NULL && hash_table_2[i] != DELETED && hash_table_2[i]->key == key)
+        {
+            lookup->index = i;
+            lookup->table = '2';
+            return lookup;
+        }
+    }
 
-    i = h2(key);
 
-    if (hash_table_2[i] != NULL && hash_table_2[i] != DELETED && hash_table_2[i]->key == key)
-        return i;
-
-    return -1;
+    return NULL;
 }
