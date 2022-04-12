@@ -2,13 +2,11 @@
 #include <stdlib.h>
 #include "hashtable.h"
 
-#define LENGTH 1024
 #define m 11
 
 int main()
 {
     char op[1];
-    char line[LENGTH];
     int key;
 
     node_t *hash_table[m];
@@ -30,19 +28,19 @@ int main()
         case 'q':
             exit(0);
         case 'i':
-            scanf("%d", &key);
+            scanf("%d\n", &key);
             printf("insert %d\n", key);
             insert_node(hash_table, hash_table_2, key);
             break;
         case 'r':
-            scanf("%d", &key);
+            scanf("%d\n", &key);
             printf("delete %d\n", key);
             remove_node(hash_table, hash_table_2, key);
             break;
         default:
             break;
         }
-    } while (fgets(line, LENGTH, stdin) != NULL);
+    } while (!feof(stdin));
 
     printf("\nafter ops:\n");
     printf("table1:\n");
